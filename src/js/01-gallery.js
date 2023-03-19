@@ -20,16 +20,10 @@ function onGalleryItemClick(event) {
 }
 function createMarkup(galleryItems) {
     return galleryItems.map(({preview, original, description}) => {
-        return `<div class="gallery__item">
-  <a class="gallery__link" href="${original}">
-    <img
-      class="gallery__image"
-      src="${preview}"
-      data-source="${original}"
-      alt="${description}"
-    />
-  </a>
-</div>`;
+        return `<a class="gallery__item" href="${original}">
+  <img class="gallery__image" src="${preview}" alt="${description}" title="${description}" />
+</a>`;
     }).join('')
  
 }   
+new SimpleLightbox('.gallery a', { captionDelay: 250 });        
