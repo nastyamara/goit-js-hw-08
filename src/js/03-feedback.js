@@ -1,6 +1,6 @@
 import throttle from "lodash.throttle";
 
-const formData = {};
+let formData = {};
 const STORAGE_KEY = 'feedback-form-state';
 const formRef = document.querySelector('form');
 const submitForm = document.querySelector('button')
@@ -33,6 +33,7 @@ function onSubmitClick(e) {
         localStorage.removeItem(STORAGE_KEY);
         formRef.reset();
         console.log(formData);
+        formData = {};
     }
     else { window.alert('Заповніть усі поля!!!') }
 };
@@ -45,14 +46,14 @@ function populateData() {
         const savedData = localStorage.getItem(STORAGE_KEY);
         const parsedData = JSON.parse(savedData);
 
-        console.log(Object.keys(parsedData));
+        // console.log(Object.keys(parsedData));
         Object.entries(parsedData).forEach(([name, value]) => {
            
             formData[name] = value;
             formRef.elements[name].value = value;
 
         })
-        console.log(formData);
+     
     }
 
     //     if (parsedData.email === null) {
